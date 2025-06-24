@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Article from '@/models/Article.model';
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, context: { params: { id: string } }) {
   await dbConnect();
-  const { id } = params;
-  console.log(params)
+  const { id } = context.params;
+  console.log(context.params)
 
   try {
     // Use .lean() to get a plain JavaScript object

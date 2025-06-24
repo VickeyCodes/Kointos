@@ -160,7 +160,7 @@ export default function CoinPage() {
     }, FETCH_COOLDOWN);
 
     return () => clearInterval(intervalId);
-  }, [coinId]);
+  }, [isInitialLoad, lastFetchTime]);
 
   if (loading && isInitialLoad) {
     return (
