@@ -50,14 +50,14 @@ export default function TermsOfServicePage() {
 
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">3. Disclaimer</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                The materials on CryptoDash are provided on an as is basis. CryptoDash makes no
+                The materials on CryptoDash are provided on an &apos;as is&apos; basis. CryptoDash makes no
                 warranties, expressed or implied, and hereby disclaims and negates all other
                 warranties including, without limitation, implied warranties or conditions of
                 merchantability, fitness for a particular purpose, or non-infringement of intellectual
                 property or other violation of rights. Further, CryptoDash does not warrant or make any
                 representations concerning the accuracy, likely results, or reliability of the use of the
                 materials on its website or otherwise relating to such materials or on any sites linked to
-                this site. Use of any such linked website is at the users own risk.
+                this site. Use of any such linked website is at the user&apos;s own risk.
               </p>
 
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">4. Limitations</h2>
@@ -81,7 +81,7 @@ export default function TermsOfServicePage() {
                 CryptoDash has not reviewed all of the sites linked to its website and is not
                 responsible for the contents of any such linked site. The inclusion of any link
                 does not imply endorsement by CryptoDash of the site. Use of any such linked
-                website is at the users own risk.
+                website is at the user&apos;s own risk.
               </p>
 
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">7. Modifications</h2>
