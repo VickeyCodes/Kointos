@@ -1,24 +1,24 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import type { NextApiRequest } from 'next';
+
+
 import dbConnect from '@/lib/mongodb';
 import Article from '@/models/Article.model';
 
-interface Params {
-  params: {
-    id: string;
-  };
-}
-
-export async function GET(request: NextRequest, { params }: Params) {
+// ✅ Correct way to define handler context
+export async function GET(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
   await dbConnect();
-  const { id } = params;
+  const { id } = context.params;
 
   try {
     const article = await Article.findById(id).lean();
     if (!article) {
       return NextResponse.json({ message: 'Article not found' }, { status: 404 });
     }
-
     return NextResponse.json(article);
   } catch (error) {
     console.error('Error fetching article:', error);
@@ -26,10 +26,13 @@ export async function GET(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function PUT(request: NextRequest, { params }: Params) {
+export async function PUT(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
   await dbConnect();
-  const { id } = params;
-  const { title, content, userId } = await request.json();
+  const { id } = context.params;
+  const { title, content, userId } = await req.json();
 
   try {
     const article = await Article.findOneAndUpdate(
