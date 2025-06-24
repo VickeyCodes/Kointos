@@ -5,7 +5,7 @@ import Article from '@/models/Article.model';
 export async function GET(request: Request, context: { params: { id: string } }) {
   await dbConnect();
   const { id } = context.params;
-  console.log(context.params)
+  console.log(context.params);
 
   try {
     // Use .lean() to get a plain JavaScript object
@@ -24,9 +24,9 @@ export async function GET(request: Request, context: { params: { id: string } })
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, context: { params: { id: string } }) {
   await dbConnect();
-  const { id } = params;
+  const { id } = context.params;
   const { title, content, userId } = await request.json();
   try {
     // Use .lean() to get a plain JavaScript object
@@ -39,8 +39,6 @@ export async function PUT(request: Request, { params }: { params: { id: string }
         content,
       }
     }, { new: true });
-
-
 
     if (!article) {
       return NextResponse.json({ message: 'Article not found or you are not the author' }, { status: 404 });
