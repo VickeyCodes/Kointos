@@ -6,8 +6,8 @@ declare module 'next-auth' {
    */
   interface Session {
     user: {
-      username?: string | null | undefined;
-      id?: string | null | undefined;
+      username?: string | null;
+      id?: string | null;
     } & DefaultSession['user'];
     error?: string | null;
   }
@@ -16,17 +16,8 @@ declare module 'next-auth' {
 declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
   interface JWT {
-    username?: string | null | undefined;
-    id?: string | null | undefined;
+    username?: string | null;
+    id?: string | null;
     error?: string | null;
   }
 }
-
-/*
-declare module 'next-auth/jwt' {
-  /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
-  interface JWT {
-    username?: string | null | undefined;
-  }
-}
-*/ 
