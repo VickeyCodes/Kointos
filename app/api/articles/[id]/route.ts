@@ -1,18 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import type { NextApiRequest } from 'next';
-
-
 import dbConnect from '@/lib/mongodb';
 import Article from '@/models/Article.model';
 
-// ✅ Correct way to define handler context
-export async function GET(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
+export async function GET(req: NextRequest) {
   await dbConnect();
-  const { id } = context.params;
+  const id = req.nextUrl.pathname.split('/').pop(); // Extracting the id from the URL
 
   try {
     const article = await Article.findById(id).lean();
@@ -26,12 +19,9 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
+export async function PUT(req: NextRequest) {
   await dbConnect();
-  const { id } = context.params;
+  const id = req.nextUrl.pathname.split('/').pop(); // Extracting the id from the URL
   const { title, content, userId } = await req.json();
 
   try {
