@@ -127,7 +127,7 @@ export default function Home() {
 
     // Cleanup interval on unmount
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array as we manage updates internally
+  }, [isInitialLoad, lastFetchTime]);
 
   // Debounced search function
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);

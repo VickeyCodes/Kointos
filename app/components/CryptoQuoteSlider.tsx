@@ -48,7 +48,7 @@ const CryptoQuoteSlider: React.FC = () => {
           className="p-4"
         >
           <p className="text-xl italic text-gray-800 dark:text-gray-200 mb-2">
-            "{currentQuote.text}"
+          &quot;{currentQuote.text}&quot;
           </p>
           <p className="text-base font-semibold text-gray-600 dark:text-gray-400">
             - {currentQuote.author}
