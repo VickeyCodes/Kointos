@@ -1,54 +1,3 @@
-// import { MongoClient } from 'mongodb';
-
-// const uri = process.env.MONGODB_URI as string;
-// const options = {
-//   maxPoolSize: 10,
-//   serverSelectionTimeoutMS: 5000,
-//   socketTimeoutMS: 45000,
-//   family: 4
-// };
-
-// declare global {
-//   // eslint-disable-next-line no-var
-//   var _mongoClientPromise: Promise<MongoClient> | undefined;
-// }
-
-// let client: MongoClient;
-// let clientPromise: Promise<MongoClient>;
-
-// if (!process.env.MONGODB_URI) {
-//   throw new Error('Please add your Mongo URI to .env.local');
-// }
-
-// if (process.env.NODE_ENV === 'development') {
-//   if (!globalThis._mongoClientPromise) {
-//     client = new MongoClient(uri, options);
-//     globalThis._mongoClientPromise = client.connect()
-//       .then(client => {
-//         console.log('MongoDB connected successfully');
-//         return client;
-//       })
-//       .catch(error => {
-//         console.error('MongoDB connection error:', error);
-//         throw error;
-//       });
-//   }
-//   clientPromise = globalThis._mongoClientPromise;
-// } else {
-//   client = new MongoClient(uri, options);
-//   clientPromise = client.connect()
-//     .then(client => {
-//       console.log('MongoDB connected successfully');
-//       return client;
-//     })
-//     .catch(error => {
-//       console.error('MongoDB connection error:', error);
-//       throw error;
-//     });
-// }
-
-// export default clientPromise; 
-
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -63,7 +12,7 @@ interface MongooseCache {
 }
 
 declare global {
-  var mongoose: { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null } | undefined;
+  var mongoose: MongooseCache | undefined;
 }
 
 let cached: MongooseCache = global.mongoose || { conn: null, promise: null };
@@ -121,4 +70,3 @@ async function dbConnect() {
 }
 
 export default dbConnect;
-
